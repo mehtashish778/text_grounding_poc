@@ -5,8 +5,11 @@ from __future__ import annotations
 import os
 from pathlib import Path
 
+from dotenv import load_dotenv
+
 # Paths
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
+load_dotenv(PROJECT_ROOT / ".env")
 SAMPLES_DIR = PROJECT_ROOT / "samples"
 OUTPUTS_DIR = PROJECT_ROOT / "outputs"
 
@@ -22,7 +25,8 @@ def _has_cuda() -> bool:
 
 # Florence-2
 FLORENCE_MODEL_ID = os.getenv("FLORENCE_MODEL_ID", "microsoft/Florence-2-base")
-DEVICE = os.getenv("DEVICE", "cuda" if _has_cuda() else "cpu")
+_device = os.getenv("DEVICE")
+DEVICE = _device if _device else ("cuda" if _has_cuda() else "cpu")
 
 # Unified tiling config (applies to OCR/VLM/Hybrid)
 TILE_SIZE_PX = int(os.getenv("TILE_SIZE_PX", "400"))
