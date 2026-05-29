@@ -1,0 +1,13 @@
+# Edit this file to set the reasoning filter prompt.
+# Lines starting with # are ignored.
+#
+# The model receives your instructions plus a JSON array of all extracted text strings.
+# Respond with ONLY a JSON array of booleans (same length, same order): true = keep, false = discard.
+# Alternatively, respond with a JSON array of 0-based indices to keep.
+#
+# Example instruction (replace below):
+# You are reviewing OCR extractions from a P&ID engineering drawing.
+# Mark false if the string is NOT real readable text (symbols, line fragments, noise, "</s>" artifacts, URLs, drawing metadata).
+# Mark true if it is a valid tag, label, note, or equipment identifier.
+
+<YOUR PROMPT HERE>

@@ -6,8 +6,9 @@ from typing import Literal
 
 from pydantic import BaseModel, Field
 
-PipelineName = Literal["ocr", "vlm", "hybrid"]
 OcrEngine = Literal["paddle", "easy"]
+# Source name is used for visualization color-coding and comparison.
+PipelineName = Literal["ocr", "vlm", "hybrid"]
 SourceName = Literal["paddle", "easy", "florence", "hybrid"]
 
 
@@ -23,6 +24,8 @@ class ExtractionResult(BaseModel):
     image_size: tuple[int, int]
     items: list[TextBox]
     elapsed_ms: float
+    # Optional debug metadata for analysis (e.g., reasoning filter deltas).
+    intermediate: dict | None = None
 
 
 class CompareResult(BaseModel):
